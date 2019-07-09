@@ -13,14 +13,6 @@ class AccountPage extends React.Component {
     userNameIsHidden: true,
     isHidden: true
   };
-  // componentDidMount() {
-  //   setTimeout(() => {
-  //     this.setState({
-  //       user: this.props.Context.user
-  //     });
-  //     console.log(this.props.Context.user);
-  //   }, 1000);
-  // }
 
   userNameHandleTrigger = (newBool, newName) => {
     this.setState({
@@ -46,43 +38,46 @@ class AccountPage extends React.Component {
     const emailIsHidden = this.state.isHidden;
     return (
       <React.Fragment>
-        {nameIsHidden && (
-          <div className="d-flex justify-content-center">
-            <h6 className="text-center  pt-3 w-25 ">{user.name}</h6>
-            <button
-              type="submit"
-              onClick={this.userNameHandleTrigger}
-              className="btn btn-dark w-25 mt-2"
-            >
-              Edit username
-            </button>
-          </div>
-        )}
-        {!nameIsHidden && (
-          <Username
-            user={this.props.Context.user}
-            userNameHandleTrigger={this.userNameHandleTrigger}
-          />
-        )}
-        {emailIsHidden && (
-          <div className=" d-flex justify-content-center ">
-            <h6 className="text-center pt-3  w-25 ">{user.email}</h6>
-            <button
-              type="submit"
-              onClick={this.emailInputTrigger}
-              className="btn-dark w-25 mt-2"
-            >
-              Edit Email address
-            </button>
-          </div>
-        )}
-        {!emailIsHidden && (
-          <EmailChangeForm
-            user={this.props.Context.user}
-            emailInputTrigger={this.emailInputTrigger}
-          />
-        )}
-        <DeleteAccount history={this.props.history} />
+        <h3 className="text-center mt-5 mb-3">User Dashboard</h3>
+        <div className="stand border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
+          {nameIsHidden && (
+            <div className="d-flex justify-content-center">
+              <h6 className="text-center  pt-3 w-50 ">{user.name}</h6>
+              <button
+                type="submit"
+                onClick={this.userNameHandleTrigger}
+                className="btn btn-dark w-50 mt-2"
+              >
+                Edit username
+              </button>
+            </div>
+          )}
+          {!nameIsHidden && (
+            <Username
+              user={this.props.Context.user}
+              userNameHandleTrigger={this.userNameHandleTrigger}
+            />
+          )}
+          {emailIsHidden && (
+            <div className=" d-flex justify-content-center ">
+              <h6 className="text-center pt-3  w-50 ">{user.email}</h6>
+              <button
+                type="submit"
+                onClick={this.emailInputTrigger}
+                className="btn btn-dark w-50 mt-2"
+              >
+                Edit Email address
+              </button>
+            </div>
+          )}
+          {!emailIsHidden && (
+            <EmailChangeForm
+              user={this.props.Context.user}
+              emailInputTrigger={this.emailInputTrigger}
+            />
+          )}
+          <DeleteAccount history={this.props.history} />
+        </div>
       </React.Fragment>
     );
   }

@@ -60,7 +60,8 @@ class Forgotpass extends React.Component {
   render() {
     const { email, messageFromServer, showNullError, showError } = this.state;
     return (
-      <div className="container mx-auto text-center">
+      <div className="stand container mx-auto text-center border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
+        <h2 className="mb-4">Please Enter Your Email Address.</h2>
         <form
           className="form-signin mx-auto d-felx w-50"
           onSubmit={this.sendEmail}
@@ -68,7 +69,7 @@ class Forgotpass extends React.Component {
           <input
             type="text"
             id="email"
-            className="form-control w-50 mb-2 mx-auto"
+            className="form-control mb-2 mx-auto"
             label="email"
             value={email}
             onChange={this.handleChange("email")}
@@ -77,7 +78,7 @@ class Forgotpass extends React.Component {
           />
           <button
             type="submit"
-            className="btn btn-lg btn-dark btn-block w-50 mx-auto"
+            className="btn btn-lg btn-dark btn-block mx-auto"
           >
             Send a reset link
           </button>

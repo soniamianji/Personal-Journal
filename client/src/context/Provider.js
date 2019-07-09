@@ -1,4 +1,4 @@
-import { Context } from "./Context"
+import { Context } from "./Context";
 import * as React from "react";
 import axios from "axios";
 import config from "../modules/config";
@@ -7,8 +7,8 @@ export default class Provider extends React.Component {
   constructor() {
     super();
     this.state = {
-      user:{},
-      users:[],
+      user: {},
+      users: [],
       setUser: this.setUser.bind(this),
       setUsers: this.setUsers.bind(this)
     };
@@ -16,7 +16,17 @@ export default class Provider extends React.Component {
   setUser() {
     const AuthorizationHeader = config.AuthorizationHeader();
     axios.get("/api/getuser", AuthorizationHeader).then(response => {
-      const { user } = response.data;
+      let { user } = response.data;
+      let blog = user.blog;
+
+      user.blog.sort(function(a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.blog_Date) - new Date(a.blog_Date);
+      });
+
+      console.log(blog);
+      console.log(user);
       this.setState({
         user
       });

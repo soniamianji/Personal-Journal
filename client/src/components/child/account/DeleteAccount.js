@@ -15,9 +15,18 @@ class DeleteAccount extends React.Component {
   };
   render() {
     return (
-      <div className=" d-flex justify-content-center ">
-        <form onSubmit={this.onSubmitHandler} className="w-50">
-          <button type="submit" className="btn btn-dark w-100 mt-2">
+      <div className=" d-flex justify-content-end ">
+        <form className="w-50">
+          <button
+            type="submit"
+            className="btn btn-dark w-100 mt-2"
+            onClick={e => {
+              if (
+                window.confirm("Are you sure you wish to delete this Account?")
+              )
+                this.onSubmitHandler(e);
+            }}
+          >
             Delete the account
           </button>
         </form>

@@ -101,7 +101,7 @@ export default class ResetPass extends React.Component {
     const { password, error, isLoading, updated } = this.state;
     if (error) {
       return (
-        <div className="container mx-auto text-center">
+        <div className="stand container mx-auto text-center border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
           <h4> Problem resetting password. Please send another link.</h4>
           <Link
             to={{
@@ -115,8 +115,8 @@ export default class ResetPass extends React.Component {
       );
     } else {
       return (
-        <div className="container mx-auto text-center">
-          <h2>Please Enter Your New Password</h2>
+        <div className="stand container mx-auto text-center border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
+          <h2 className="mb-4">Please Enter Your New Password</h2>
           <form
             className="form-signin mx-auto d-felx w-50"
             onSubmit={this.updatePassword}
@@ -126,11 +126,11 @@ export default class ResetPass extends React.Component {
               onChange={this.handleChange("password")}
               value={password}
               placeholder="Password"
-              className="form-control w-50 mb-2 mx-auto"
+              className="form-control mb-2 mx-auto"
             />
             <button
               type="submit"
-              className="btn btn-lg btn-dark btn-block w-50 mx-auto"
+              className="btn btn-lg btn-dark btn-block mx-auto"
             >
               Update Password
             </button>

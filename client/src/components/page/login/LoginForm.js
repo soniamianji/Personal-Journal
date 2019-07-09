@@ -11,7 +11,7 @@ const LoginForm = ({
   <div className="container mx-auto pt-3 ">
     <form onSubmit={onSubmit} className="form-signin mx-auto d-felx">
       <h1 className="h3 mb-3 text-center font-weight-normal">Please Login</h1>
-      <div className="text-danger">{errors.message}</div>
+      <div className="text-danger text-center">{errors.message}</div>
       <input
         type="email"
         onChange={onChange}

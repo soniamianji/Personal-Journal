@@ -7,31 +7,57 @@ import Auth from "../../modules/Auth";
 
 class NavBar extends React.Component {
   componentDidMount() {
-    if(Auth.isUserAuthenticated){
+    if (Auth.isUserAuthenticated) {
       this.props.Context.setUser();
     }
   }
 
   render() {
+    const authenticated = Auth.isUserAuthenticated();
     return (
       <React.Fragment>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/account">AccountPage</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign up</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/logout">Log out</Link>
-          </li>
-        </ul>
+        <nav className="navbar navbar-expand-md navbar-dark  bg-dark">
+          <div className="d-flex">
+            <ul className="navbar-nav mr-auto">
+              {authenticated && (
+                <li className="nav-item text-light">
+                  <Link className=" text-light p-2 bd-highlight" to="/">
+                    Journal
+                  </Link>
+                </li>
+              )}
+              {authenticated && (
+                <li className="nav-item text-light">
+                  <Link className=" text-light p-2 bd-highlight" to="/account">
+                    Profile
+                  </Link>
+                </li>
+              )}
+
+              {!authenticated && (
+                <li className="nav-item text-light">
+                  <Link className=" text-light p-2 bd-highlight" to="/signup">
+                    Sign up
+                  </Link>
+                </li>
+              )}
+              {!authenticated && (
+                <li className="nav-item text-light ${isActiveClasses">
+                  <Link className=" text-light p-2 bd-highlight" to="/login">
+                    Login
+                  </Link>
+                </li>
+              )}
+              {authenticated && (
+                <li className="nav-item text-light">
+                  <Link className=" text-light p-2 bd-highlight" to="/logout">
+                    Log out
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
+        </nav>
       </React.Fragment>
     );
   }

@@ -103,8 +103,7 @@ class LoginPage extends React.Component {
    */
   render() {
     return (
-      <div className="border w-50 mx-auto shadow-sm p-3 mb-5 bg-white rounded">
-        <h1 className="text-center">Welcome to the Word of Wisdom </h1>
+      <div className=" stand border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
         <LoginForm
           onSubmit={this.processForm}
           onChange={this.changeUser}

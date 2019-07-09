@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+const BlogSchema = new mongoose.Schema({
+  blog_Date: Date,
+  text: {
+    type: String,
+    required: true
+  }
+});
 // define the User model schema
 const UserSchema = new mongoose.Schema({
   email: {
@@ -10,7 +17,8 @@ const UserSchema = new mongoose.Schema({
   password: String,
   name: String,
   resetPasswordToken: String,
-  resetPasswordExpires: Date
+  resetPasswordExpires: Date,
+  blog: [BlogSchema]
 });
 
 /**

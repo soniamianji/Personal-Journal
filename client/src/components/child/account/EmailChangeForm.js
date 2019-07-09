@@ -57,12 +57,12 @@ class EmailChangeForm extends React.Component {
     const err = this.state.errors;
     return (
       <React.Fragment>
-        <div className="d-flex w-50 mx-auto mt-2">
+        <div className="d-flex mx-auto mt-2">
           <input
             type="text"
             name="email"
             onChange={this.onChangeEmailHandler}
-            className="form-control w-25 mr-2"
+            className="form-control w-25 mr-1"
             placeholder={user.email}
           />
           <input

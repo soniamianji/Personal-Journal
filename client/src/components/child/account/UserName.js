@@ -49,7 +49,7 @@ class UserName extends React.Component {
     const err = this.state.errors;
     return (
       <React.Fragment>
-        <div className="d-flex w-50 mx-auto mt-2">
+        <div className="d-flex  mx-auto mt-2">
           <input
             type="text"
             onChange={this.onChangeHandler}

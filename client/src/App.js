@@ -7,7 +7,7 @@ import HomePage from "./components/page/HomePage";
 import LogOut from "./components/child/LogOut";
 import AccountPage from "./components/page/account/AccountPage";
 import Provider from "./context/Provider";
-
+import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -19,6 +19,7 @@ import {
 import Auth from "./modules/Auth";
 import "./App.css";
 import NavBar from "./components/child/NavBar";
+import Axios from "axios";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -63,12 +64,14 @@ const GlobalRoute = ({ component: Component, ...rest }) => (
 
 class App extends Component {
   componentDidMount() {}
+
   render() {
     return (
       <Provider>
         <Router>
           <div>
             <NavBar />
+
             <PrivateRoute exact path="/" component={HomePage} />
             <PrivateRoute path="/account" component={AccountPage} />
             <LoggedOutRoute path="/signup" component={SignUpPage} />

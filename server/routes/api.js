@@ -172,4 +172,45 @@ router.put("/editemail", (req, res) => {
   });
 });
 
+router.put("/blogPost", (req, res) => {
+  req.body = myBodyParser(req.body);
+  console.log(req.body);
+  const id = req.body.id;
+  console.log(id);
+  users.findById(id, function(err, user) {
+    if (err) {
+      console.log("errrr");
+      return res.status(401);
+    } else if (user) {
+      user.blog.push({ blog_Date: req.body.date, text: req.body.text });
+      user.save(function(err, obj) {
+        if (err) {
+          console.log("there was an error");
+        } else {
+          console.log(obj);
+          res.status(200).json({ message: "success!" });
+        }
+      });
+    }
+  });
+});
+
+//DELETE SELECTED USER BLOG
+router.delete("/deleteblog/:id", (req, res) => {
+  console.log("oj");
+  console.log(req.params.id);
+  const id = req.params.id;
+  let user = req.user;
+  const blog = user.blog.filter(b => b._id != id);
+  user.blog = blog;
+  user.save((err, data) => {
+    console.log(data);
+    if (!err) {
+      res.status(200).json({});
+    } else {
+      res.status(401);
+    }
+  });
+});
+
 module.exports = router;
