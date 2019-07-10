@@ -13,8 +13,6 @@ class Blogposts extends React.Component {
 
   deleteBlogHandler = item => {
     const AuthorizationHeader = config.AuthorizationHeader();
-    // const body = { id: item._id };
-
     axios
       .delete(`/api/deleteblog/${item._id}`, AuthorizationHeader)
 
@@ -24,6 +22,10 @@ class Blogposts extends React.Component {
           this.props.Context.setUser();
         }
       });
+  };
+  editPostHandler = item => {
+    const selectedBlogPost = item;
+    this.props.editBlog(item);
   };
   render() {
     const user = this.props.Context.user;
@@ -46,7 +48,12 @@ class Blogposts extends React.Component {
                   Delete
                 </button>
 
-                <span className="badge badge-warning m-1 p-2">Edit</span>
+                <button
+                  className="badge badge-warning m-1 p-2"
+                  onClick={() => this.editPostHandler(item)}
+                >
+                  Edit
+                </button>
               </div>
             </div>
           ))}

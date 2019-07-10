@@ -174,12 +174,9 @@ router.put("/editemail", (req, res) => {
 
 router.put("/blogPost", (req, res) => {
   req.body = myBodyParser(req.body);
-  console.log(req.body);
   const id = req.body.id;
-  console.log(id);
   users.findById(id, function(err, user) {
     if (err) {
-      console.log("errrr");
       return res.status(401);
     } else if (user) {
       user.blog.push({ blog_Date: req.body.date, text: req.body.text });
@@ -213,4 +210,71 @@ router.delete("/deleteblog/:id", (req, res) => {
   });
 });
 
+//Edit Selected Blog Post
+router.put("/editeblogpost", (req, res) => {
+  req.body = myBodyParser(req.body);
+  const user = req.user;
+  const Userid = req.user.id;
+  const userBlogId = req.body.blogId;
+  console.log(Userid);
+  console.log(userBlogId);
+  let blogs = user.blog;
+  console.log(blogs);
+  let blog = blogs.find(el => {
+    return el._id == userBlogId;
+  });
+
+  blog.text = req.body.text;
+  blogs = blogs.filter(b => b._id != userBlogId);
+  blogs.push(blog);
+  user.blog = blogs;
+  user.save((err, data) => {
+    console.log(data);
+    if (!err) {
+      res.status(200).json({});
+    } else {
+      res.status(401);
+    }
+  });
+  // users.findOne(
+  //   { _id: Userid },
+  //   { blog: { $elemMatch: { _id: userBlogId } } },
+  //   (err, obj) => {
+  //     if (err) {
+  //       console.log("errr");
+  //     } else {
+  //       console.log(obj);
+  //       obj.text = req.body.text;
+  //       const i = user.blog.indexOf(obj);
+  //       console.log(i);
+  //       // user.blog[0].text = obj.text;
+
+  //       // user.save((err, data) => {
+  //       //   console.log(data);
+  //       //   if (!err) {
+  //       //     res.status(200).json({});
+  //       //   } else {
+  //       //     res.status(401);
+  //       //   }
+  //       // });
+  //     }
+  //   }
+  // );
+
+  // users.findOneAndUpdate(
+  //   { user.blog: { _id: "blogid" } },
+  //   {
+  //     $set: {
+  //       text: reqblog.text,
+  //       date: reqblog.date
+  //     }
+  //   },
+  //   (err, result) => {
+  //     if (err) return res.send(err);
+  //     res.send(result);
+  //   }
+  // );
+});
+//   users.findOneAndUpdate({ blog }, update, options, callback);
+// });
 module.exports = router;

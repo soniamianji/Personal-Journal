@@ -8,7 +8,8 @@ class HomePage extends React.Component {
     text: "",
     date: "",
     errors: {},
-    posted: false
+    posted: false,
+    blogId: ""
   };
   componentDidMount() {
     this.props.Context.setUsers();
@@ -17,45 +18,78 @@ class HomePage extends React.Component {
   onSubmitHandler = e => {
     e.preventDefault();
     const AuthorizationHeader = config.AuthorizationHeader();
-    const body = {
-      text: this.state.text,
-      date: this.state.date,
-      id: this.props.Context.user._id
-    };
-    console.log(body.id);
-    axios.put("/api/blogPost", body, AuthorizationHeader).then(response => {
-      console.log(response.data);
-      if (response.data.message === "success!") {
-        this.setState({
-          posted: true
-        });
-        this.props.Context.setUser();
-      }
+    if (!this.state.enableEdit) {
+      const body = {
+        text: this.state.text,
+        date: this.state.date,
+        id: this.props.Context.user._id,
+        enableEdit: false
+      };
+      axios.put("/api/blogPost", body, AuthorizationHeader).then(response => {
+        console.log(response.data);
+        if (response.data.message === "success!") {
+          this.setState({
+            posted: true,
+            text: ""
+          });
+          this.props.Context.setUser();
+        }
 
-      this.setState({
-        errors: {}
+        this.setState({
+          errors: {}
+        });
+        localStorage.setItem("successMessage", response.data.message);
       });
-      localStorage.setItem("successMessage", response.data.message);
-    });
-    this.setState({
-      text: ""
-    });
+      this.setState({
+        text: ""
+      });
+    } else {
+      console.log("edit post");
+      const body = {
+        text: this.state.text,
+        date: this.state.date,
+        blogId: this.state.blogId
+      };
+      axios
+        .put("/api/editeblogpost", body, AuthorizationHeader)
+        .then(response => {
+          console.log(response);
+          this.props.Context.setUser();
+          this.setState({
+            text: ""
+          });
+
+          // const { user } = response.data;
+          // this.setState({ user, emailFormHidden: !this.state.emailFormHidden });
+          // this.props.emailInputTrigger(
+          //   this.state.emailFormHidden,
+          //   this.state.user
+          // );
+        });
+    }
   };
   onchangeHandler = e => {
     this.setState({
       posted: false
     });
     const d = Date(Date.now()).toString();
-    console.log(d);
     this.setState({
       text: e.target.value,
       date: d
     });
   };
 
+  editPostHandler = item => {
+    console.log(item.text);
+    this.setState({
+      enableEdit: true,
+      text: item.text,
+      blogId: item._id
+    });
+  };
+
   render() {
     const user = this.props.Context.user;
-    console.log(user.blog);
     const posts = this.props.Context.user.blog;
     const { posted } = this.state;
 
@@ -67,24 +101,33 @@ class HomePage extends React.Component {
             <div className="col w-50 mx-auto">
               <h6>{Date(Date.now()).toString()}</h6>
             </div>
-            <textarea
-              type="text"
-              rows="3"
-              className="form-control w-50 mb-2 mx-auto"
-              onChange={this.onchangeHandler}
-              value={this.state.text}
-              placeholder="Write your wisdom here!"
-            />
+            {this.state.enableEdit ? (
+              <textarea
+                type="text"
+                rows="3"
+                className="form-control w-50 mb-2 mx-auto"
+                value={this.state.text}
+                onChange={this.onchangeHandler}
+              />
+            ) : (
+              <textarea
+                type="text"
+                rows="3"
+                className="form-control w-50 mb-2 mx-auto"
+                onChange={this.onchangeHandler}
+                placeholder="Write your wisdom here!"
+              />
+            )}
             {posted && <h6 className="text-center text-info">Posted</h6>}
             <button
               type="submit"
               className="btn btn-lg btn-dark btn-block w-25 mb-2 mx-auto"
             >
-              Post
+              {this.state.enableEdit ? "Edit Post" : "Post"}
             </button>
           </form>
         </div>
-        <Blogposts />
+        <Blogposts editBlog={this.editPostHandler} />
       </React.Fragment>
     );
   }

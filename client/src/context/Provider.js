@@ -24,9 +24,6 @@ export default class Provider extends React.Component {
         // to get a value that is either negative, positive, or zero.
         return new Date(b.blog_Date) - new Date(a.blog_Date);
       });
-
-      console.log(blog);
-      console.log(user);
       this.setState({
         user
       });
