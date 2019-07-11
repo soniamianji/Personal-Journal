@@ -19,13 +19,21 @@ class NavBar extends React.Component {
         <nav className="navbar navbar-expand-md navbar-dark  bg-dark">
           <div className="d-flex">
             <ul className="navbar-nav mr-auto">
-              {authenticated && (
+              {
                 <li className="nav-item text-light">
-                  <Link className=" text-light p-2 bd-highlight" to="/">
+                  <Link className=" text-light p-2 bd-highlight" to="/journal">
                     Journal
                   </Link>
                 </li>
+              }
+              {authenticated && (
+                <li className="nav-item text-light">
+                  <Link className=" text-light p-2 bd-highlight" to="/">
+                    Home
+                  </Link>
+                </li>
               )}
+
               {authenticated && (
                 <li className="nav-item text-light">
                   <Link className=" text-light p-2 bd-highlight" to="/account">

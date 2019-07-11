@@ -3,13 +3,14 @@ import config from "../../modules/config";
 import axios from "axios";
 import { withContext } from "../../context/WithContext";
 import Blogposts from "../child/Blogposts";
+import Moment from "moment";
+
 class HomePage extends React.Component {
   state = {
     text: "",
     date: "",
     errors: {},
-    posted: false,
-    blogId: ""
+    posted: false
   };
   componentDidMount() {
     this.props.Context.setUsers();
@@ -18,73 +19,36 @@ class HomePage extends React.Component {
   onSubmitHandler = e => {
     e.preventDefault();
     const AuthorizationHeader = config.AuthorizationHeader();
-    if (!this.state.enableEdit) {
-      const body = {
-        text: this.state.text,
-        date: this.state.date,
-        id: this.props.Context.user._id,
-        enableEdit: false
-      };
-      axios.put("/api/blogPost", body, AuthorizationHeader).then(response => {
-        console.log(response.data);
-        if (response.data.message === "success!") {
-          this.setState({
-            posted: true,
-            text: ""
-          });
-          this.props.Context.setUser();
-        }
-
+    console.log(this.state.date);
+    const body = {
+      text: this.state.text,
+      date: this.state.date,
+      id: this.props.Context.user._id
+    };
+    axios.put("/api/blogPost", body, AuthorizationHeader).then(response => {
+      console.log(response.data);
+      if (response.data.message === "success!") {
         this.setState({
+          posted: true,
           errors: {}
         });
-        localStorage.setItem("successMessage", response.data.message);
-      });
-      this.setState({
-        text: ""
-      });
-    } else {
-      console.log("edit post");
-      const body = {
-        text: this.state.text,
-        date: this.state.date,
-        blogId: this.state.blogId
-      };
-      axios
-        .put("/api/editeblogpost", body, AuthorizationHeader)
-        .then(response => {
-          console.log(response);
-          this.props.Context.setUser();
-          this.setState({
-            text: ""
-          });
-
-          // const { user } = response.data;
-          // this.setState({ user, emailFormHidden: !this.state.emailFormHidden });
-          // this.props.emailInputTrigger(
-          //   this.state.emailFormHidden,
-          //   this.state.user
-          // );
-        });
-    }
+        this.props.Context.setUser();
+      }
+      localStorage.setItem("successMessage", response.data.message);
+    });
+    this.setState({
+      text: ""
+    });
   };
   onchangeHandler = e => {
     this.setState({
       posted: false
     });
     const d = Date(Date.now()).toString();
+    var dt = "2016-05-02T00:00:00";
     this.setState({
       text: e.target.value,
-      date: d
-    });
-  };
-
-  editPostHandler = item => {
-    console.log(item.text);
-    this.setState({
-      enableEdit: true,
-      text: item.text,
-      blogId: item._id
+      date: Moment(dt).format("LLLL")
     });
   };
 
@@ -92,42 +56,47 @@ class HomePage extends React.Component {
     const user = this.props.Context.user;
     const posts = this.props.Context.user.blog;
     const { posted } = this.state;
-
+    Moment.locale("en");
+    var dt = "2016-05-02T00:00:00";
+    // const now = new Date(Date.now());
     return (
       <React.Fragment>
         <h1 className="text-center">Hey {user && user.name}</h1>
         <div className="stand container mx-auto border shadow-sm">
-          <form onSubmit={this.onSubmitHandler} className="form-signin">
-            <div className="col w-50 mx-auto">
-              <h6>{Date(Date.now()).toString()}</h6>
-            </div>
-            {this.state.enableEdit ? (
+          <form onSubmit={this.onSubmitHandler} className="form-signin m-2">
+            <div className="col mx-auto m-3">
+              <h6>{Moment(dt).format("LLLL")} </h6>
               <textarea
                 type="text"
                 rows="3"
-                className="form-control w-50 mb-2 mx-auto"
+                className="form-control mb-2 mx-auto"
+                onChange={this.onchangeHandler}
                 value={this.state.text}
-                onChange={this.onchangeHandler}
-              />
-            ) : (
-              <textarea
-                type="text"
-                rows="3"
-                className="form-control w-50 mb-2 mx-auto"
-                onChange={this.onchangeHandler}
                 placeholder="Write your wisdom here!"
               />
-            )}
-            {posted && <h6 className="text-center text-info">Posted</h6>}
-            <button
-              type="submit"
-              className="btn btn-lg btn-dark btn-block w-25 mb-2 mx-auto"
-            >
-              {this.state.enableEdit ? "Edit Post" : "Post"}
-            </button>
+            </div>
+
+            <div className="d-flex flex-row-reverese">
+              {posted ? (
+                <button
+                  type="submit"
+                  className="btn btn-info  w-25 mb-2 ml-auto"
+                  disabled
+                >
+                  Posted
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="btn btn-dark  w-25 mb-2 ml-auto mr-3"
+                >
+                  Post
+                </button>
+              )}
+            </div>
           </form>
         </div>
-        <Blogposts editBlog={this.editPostHandler} />
+        <Blogposts />
       </React.Fragment>
     );
   }

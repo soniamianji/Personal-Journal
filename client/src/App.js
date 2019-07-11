@@ -20,6 +20,7 @@ import Auth from "./modules/Auth";
 import "./App.css";
 import NavBar from "./components/child/NavBar";
 import Axios from "axios";
+import Journal from "./components/page/Journal";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -75,6 +76,7 @@ class App extends Component {
             <PrivateRoute exact path="/" component={HomePage} />
             <PrivateRoute path="/account" component={AccountPage} />
             <LoggedOutRoute path="/signup" component={SignUpPage} />
+            <GlobalRoute path="/journal" component={Journal} />
             <LoggedOutRoute path="/login" component={LoginPage} />
             <LoggedOutRoute path="/forgotpass" component={Forgotpass} />
             <LoggedOutRoute path="/reset" component={Resetpass} />

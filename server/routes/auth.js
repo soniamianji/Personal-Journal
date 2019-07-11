@@ -308,34 +308,12 @@ router.put("/updatePassViaMail", (req, res) => {
     });
 });
 
-// router.put("/updatePassViaMail", (req, res, next) => {
-//   console.log(req.);
-//   // users
-//   //   .findOne({
-//   //     resetPasswordToken: req.query.resetPasswordToken
-//   //   })
-//   //   .then(user => {
-//   // if (!user) {
-//   //   console.log("password reset link is invalid or has expired");
-//   //   res.json("password reset link is invalid or has expired");
-//   // } else {
-//   //   console.log(req.query.password);
-//   //   user.password = req.query.password;
-//   //   user.resetPasswordToken = null;
-//   //   user.resetPasswordExpires = null;
-//   //   user.save(function(err, obj) {
-//   //     if (err) {
-//   //       console.log("there was an error");
-//   //       res.status(200).json({ data: req });
-//   //     } else {
-//   //       console.log(obj);
-//   //       res.status(200).json({
-//   //         message: "your password has been successfully set!"
-//   //       });
-//   //     }
-//   //   });
-//   // }
-//   // });
-// });
-
+router.get("/getallblogs", (req, res) => {
+  users.find({}).then((users, err) => {
+    if (err) {
+      return res.status(401);
+    }
+    res.status(200).json({ users });
+  });
+});
 module.exports = router;

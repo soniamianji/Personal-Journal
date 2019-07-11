@@ -233,7 +233,7 @@ router.put("/editeblogpost", (req, res) => {
     if (!err) {
       res.status(200).json({});
     } else {
-      res.status(401);
+      res.status(401).json({});
     }
   });
   // users.findOne(
