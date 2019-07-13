@@ -22,7 +22,7 @@ export default class Provider extends React.Component {
       user.blog.sort(function(a, b) {
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
-        return new Date(b.blog_Date) - new Date(a.blog_Date);
+        return new Date(a.blog_Date) - new Date(b.blog_Date);
       });
       this.setState({
         user

@@ -14,6 +14,7 @@ class NavBar extends React.Component {
 
   render() {
     const authenticated = Auth.isUserAuthenticated();
+    const user = this.props.Context.user;
     return (
       <React.Fragment>
         <nav className="navbar navbar-expand-md navbar-dark  bg-dark">
@@ -56,6 +57,15 @@ class NavBar extends React.Component {
                   </Link>
                 </li>
               )}
+            </ul>
+          </div>
+          <div className="d-flex ml-auto">
+            <ul className="navbar-nav ">
+              <li>
+                <a href="#" className="text-warning">
+                  {user.name}
+                </a>
+              </li>
               {authenticated && (
                 <li className="nav-item text-light">
                   <Link className=" text-light p-2 bd-highlight" to="/logout">

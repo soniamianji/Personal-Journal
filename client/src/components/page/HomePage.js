@@ -44,7 +44,7 @@ class HomePage extends React.Component {
     this.setState({
       posted: false
     });
-    const d = Date(Date.now()).toString();
+
     var dt = "2016-05-02T00:00:00";
     this.setState({
       text: e.target.value,
@@ -61,42 +61,43 @@ class HomePage extends React.Component {
     // const now = new Date(Date.now());
     return (
       <React.Fragment>
-        <h1 className="text-center">Hey {user && user.name}</h1>
-        <div className="stand container mx-auto border shadow-sm">
-          <form onSubmit={this.onSubmitHandler} className="form-signin m-2">
-            <div className="col mx-auto m-3">
-              <h6>{Moment(dt).format("LLLL")} </h6>
-              <textarea
-                type="text"
-                rows="3"
-                className="form-control mb-2 mx-auto"
-                onChange={this.onchangeHandler}
-                value={this.state.text}
-                placeholder="Write your wisdom here!"
-              />
-            </div>
+        <div className=" standParent mx-auto">
+          <div className="stand container mx-auto border shadow-sm bg-light">
+            <form onSubmit={this.onSubmitHandler} className="form-signin m-2">
+              <div className="col mx-auto m-3">
+                <h6 className="p-2">{Moment(dt).format("LLLL")} </h6>
+                <textarea
+                  type="text"
+                  rows="3"
+                  className="form-control mb-2 mx-auto"
+                  onChange={this.onchangeHandler}
+                  value={this.state.text}
+                  placeholder="Write your wisdom here!"
+                />
+              </div>
 
-            <div className="d-flex flex-row-reverese">
-              {posted ? (
-                <button
-                  type="submit"
-                  className="btn btn-info  w-25 mb-2 ml-auto"
-                  disabled
-                >
-                  Posted
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  className="btn btn-dark  w-25 mb-2 ml-auto mr-3"
-                >
-                  Post
-                </button>
-              )}
-            </div>
-          </form>
+              <div className="d-flex flex-row-reverese">
+                {posted ? (
+                  <button
+                    type="submit"
+                    className="btn btn-warning w-25 mb-2 ml-auto mr-3"
+                    disabled
+                  >
+                    Posted
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="btn btn-dark  w-25 mb-2 ml-auto mr-3"
+                  >
+                    Post
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
+          <Blogposts />
         </div>
-        <Blogposts />
       </React.Fragment>
     );
   }

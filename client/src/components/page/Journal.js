@@ -31,14 +31,19 @@ class Journal extends React.Component {
     const users = this.state.users;
     return (
       <React.Fragment>
-        <h1 className="text-center"> Welcome to Monkey's Journal</h1>
+        <div className=" standParent mx-auto">
+          <h1 className="text-center text-light">
+            {" "}
+            Welcome to Monkey's Journal
+          </h1>
 
-        {users &&
-          users.map((user, i) => {
-            if (user.blog.length > 0) {
-              return <JournalPost key={i} user={user} />;
-            }
-          })}
+          {users &&
+            users.map((user, i) => {
+              if (user.blog.length > 0) {
+                return <JournalPost key={i} user={user} />;
+              }
+            })}
+        </div>
       </React.Fragment>
     );
   }

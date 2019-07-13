@@ -172,6 +172,7 @@ router.put("/editemail", (req, res) => {
   });
 });
 
+//posting a new blog
 router.put("/blogPost", (req, res) => {
   req.body = myBodyParser(req.body);
   const id = req.body.id;
@@ -236,45 +237,5 @@ router.put("/editeblogpost", (req, res) => {
       res.status(401).json({});
     }
   });
-  // users.findOne(
-  //   { _id: Userid },
-  //   { blog: { $elemMatch: { _id: userBlogId } } },
-  //   (err, obj) => {
-  //     if (err) {
-  //       console.log("errr");
-  //     } else {
-  //       console.log(obj);
-  //       obj.text = req.body.text;
-  //       const i = user.blog.indexOf(obj);
-  //       console.log(i);
-  //       // user.blog[0].text = obj.text;
-
-  //       // user.save((err, data) => {
-  //       //   console.log(data);
-  //       //   if (!err) {
-  //       //     res.status(200).json({});
-  //       //   } else {
-  //       //     res.status(401);
-  //       //   }
-  //       // });
-  //     }
-  //   }
-  // );
-
-  // users.findOneAndUpdate(
-  //   { user.blog: { _id: "blogid" } },
-  //   {
-  //     $set: {
-  //       text: reqblog.text,
-  //       date: reqblog.date
-  //     }
-  //   },
-  //   (err, result) => {
-  //     if (err) return res.send(err);
-  //     res.send(result);
-  //   }
-  // );
 });
-//   users.findOneAndUpdate({ blog }, update, options, callback);
-// });
 module.exports = router;

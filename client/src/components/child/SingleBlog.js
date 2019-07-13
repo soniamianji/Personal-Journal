@@ -76,7 +76,7 @@ class SingleBlog extends React.Component {
     const itemDate = Moment(date).format("LLLL");
     return (
       <React.Fragment>
-        <div className="stand container mx-auto border shadow-sm ">
+        <div className="stand container mx-auto border shadow-sm bg-light">
           <div className="d-flex m-3 mt-5">
             <img
               src={require("../../avatar/avatar.png")}
@@ -103,7 +103,7 @@ class SingleBlog extends React.Component {
               />
             </form>
           ) : (
-            <div className="border  p-3 m-3 ">{this.props.item.text}</div>
+            <div className=" p-3 m-3 ">{this.props.item.text}</div>
           )}
 
           <div className="d-flex flex-row-reverse m-3">

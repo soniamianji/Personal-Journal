@@ -40,8 +40,20 @@
 }
 
 @media only screen and (min-width: 600px) {
+  .standParent {
+    background-color: #282c34;
+    padding-top: 44px;
+    padding-bottom: 44px;
+    height: 100vh;
+  }
   .stand {
     width: 600px !important;
     margin-top: 44px;
+    margin-bottom: 44px;
+  }
+  .stand:first-child,
+  .stand:last-child {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }

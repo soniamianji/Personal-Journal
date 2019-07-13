@@ -13,6 +13,7 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
+
 class LoginPage extends React.Component {
   /**
    * Class constructor.

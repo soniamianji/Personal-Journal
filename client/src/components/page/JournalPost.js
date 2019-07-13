@@ -21,7 +21,7 @@ class Journal extends React.Component {
       <React.Fragment>
         {user.blog &&
           user.blog.map((blog, i) => (
-            <div className="stand container mx-auto border shadow-sm pb-4 ">
+            <div className="stand container mx-auto border shadow-sm pb-4 bg-light">
               <div className="d-flex m-3 mt-5">
                 <img
                   src={require("../../avatar/avatar.png")}
@@ -39,7 +39,7 @@ class Journal extends React.Component {
                 </div>
               </div>
 
-              <div className="border  p-3 m-3 ">{blog.text}</div>
+              <div className=" p-3 m-3 ">{blog.text}</div>
             </div>
           ))}
       </React.Fragment>
