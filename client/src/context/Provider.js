@@ -2,6 +2,7 @@ import { Context } from "./Context";
 import * as React from "react";
 import axios from "axios";
 import config from "../modules/config";
+import Auth from "../modules/Auth";
 
 export default class Provider extends React.Component {
   constructor() {
@@ -10,7 +11,10 @@ export default class Provider extends React.Component {
       user: {},
       users: [],
       setUser: this.setUser.bind(this),
-      setUsers: this.setUsers.bind(this)
+      setUsers: this.setUsers.bind(this),
+      setAuthentication: this.setAuthentication.bind(this),
+      checkAuthentication: this.checkAuthentication.bind(this),
+      isUserAuthenticated: false
     };
   }
   setUser() {
@@ -19,11 +23,12 @@ export default class Provider extends React.Component {
       let { user } = response.data;
       let blog = user.blog;
 
-      user.blog.sort(function(a, b) {
+      blog = blog.sort(function(a, b) {
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
-        return new Date(a.blog_Date) - new Date(b.blog_Date);
+        return new Date(b.blog_Date) - new Date(a.blog_Date);
       });
+      user.blog = blog;
       this.setState({
         user
       });
@@ -38,6 +43,18 @@ export default class Provider extends React.Component {
       });
     });
   }
+
+  setAuthentication(bool) {
+    this.setState({
+      isUserAuthenticated: bool
+    });
+  }
+  checkAuthentication() {
+    this.setState({
+      isUserAuthenticated: Auth.isUserAuthenticated()
+    });
+  }
+
   render() {
     return (
       <Context.Provider

@@ -38,7 +38,7 @@ class AccountPage extends React.Component {
     const emailIsHidden = this.state.isHidden;
     return (
       <React.Fragment>
-        <div className="standParent mx-auto">
+        <div className="standParent account">
           <h3 className="text-center mt-5 mb-3 text-light">User Dashboard</h3>
           <div className="stand border mx-auto shadow-sm p-3 bg-white rounded">
             {nameIsHidden && (

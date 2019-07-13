@@ -3,6 +3,10 @@ import config from "../../modules/config";
 import axios from "axios";
 import { withContext } from "../../context/WithContext";
 import Moment from "moment";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
+import DeletePostButton from "./DeletePostButton";
 
 class SingleBlog extends React.Component {
   constructor(props) {
@@ -34,10 +38,6 @@ class SingleBlog extends React.Component {
   };
 
   onchangeHandler = e => {
-    // this.setState({
-    //   posted: false
-    // });
-    // const d = Date(Date.now()).toString();
     this.setState({
       text: e.target.value
     });
@@ -107,12 +107,10 @@ class SingleBlog extends React.Component {
           )}
 
           <div className="d-flex flex-row-reverse m-3">
-            <button
-              className="badge badge-danger ml-1 p-2"
-              onClick={() => this.deleteBlogHandler(this.props.item)}
-            >
-              Delete
-            </button>
+            <DeletePostButton
+              deleteBlogHandler={this.deleteBlogHandler}
+              item={this.props.item}
+            />
 
             {this.state.editPostEnabled ? (
               <button

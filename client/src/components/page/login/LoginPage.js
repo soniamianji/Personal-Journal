@@ -72,6 +72,7 @@ class LoginPage extends React.Component {
         });
         Auth.authenticateUser(response.data.token);
         this.props.Context.setUser();
+        this.props.Context.setAuthentication(true);
         return this.props.history.push("/");
       })
       .catch(error => {

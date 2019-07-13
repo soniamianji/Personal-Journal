@@ -45,10 +45,9 @@ class HomePage extends React.Component {
       posted: false
     });
 
-    var dt = "2016-05-02T00:00:00";
     this.setState({
       text: e.target.value,
-      date: Moment(dt).format("LLLL")
+      date: Moment().format("LLLL")
     });
   };
 
@@ -57,7 +56,7 @@ class HomePage extends React.Component {
     const posts = this.props.Context.user.blog;
     const { posted } = this.state;
     Moment.locale("en");
-    var dt = "2016-05-02T00:00:00";
+
     // const now = new Date(Date.now());
     return (
       <React.Fragment>
@@ -65,7 +64,7 @@ class HomePage extends React.Component {
           <div className="stand container mx-auto border shadow-sm bg-light">
             <form onSubmit={this.onSubmitHandler} className="form-signin m-2">
               <div className="col mx-auto m-3">
-                <h6 className="p-2">{Moment(dt).format("LLLL")} </h6>
+                <h6 className="p-2">{Moment().format("LLLL")} </h6>
                 <textarea
                   type="text"
                   rows="3"

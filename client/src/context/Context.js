@@ -5,9 +5,12 @@ export const Context = React.createContext(
   {
     Context: {
       user: {},
-      users:[],
+      users: [],
+      isUserAuthenticated: Boolean,
       setUser: () => {},
-      setUsers: () => {}
+      setUsers: () => {},
+      setAuthentication: () => {},
+      checkAuthentication: () => {}
     }
   }
 );
