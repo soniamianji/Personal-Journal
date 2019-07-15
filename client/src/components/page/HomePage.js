@@ -2,9 +2,11 @@ import React from "react";
 import config from "../../modules/config";
 import axios from "axios";
 import { withContext } from "../../context/WithContext";
-import Blogposts from "../child/Blogposts";
+import Blogposts from "../child/userBlogs/Blogposts";
 import Moment from "moment";
-
+import Blogform from "../child/BlogForm";
+import Button from "@material-ui/core/Button";
+import { Paper } from "@material-ui/core";
 class HomePage extends React.Component {
   state = {
     text: "",
@@ -55,46 +57,46 @@ class HomePage extends React.Component {
     const user = this.props.Context.user;
     const posts = this.props.Context.user.blog;
     const { posted } = this.state;
+    const value = this.state.text;
     Moment.locale("en");
 
     // const now = new Date(Date.now());
     return (
       <React.Fragment>
         <div className=" standParent mx-auto">
-          <div className="stand container mx-auto border shadow-sm bg-light">
+          <Paper className="stand container mx-auto p-2">
             <form onSubmit={this.onSubmitHandler} className="form-signin m-2">
               <div className="col mx-auto m-3">
                 <h6 className="p-2">{Moment().format("LLLL")} </h6>
-                <textarea
-                  type="text"
-                  rows="3"
-                  className="form-control mb-2 mx-auto"
-                  onChange={this.onchangeHandler}
-                  value={this.state.text}
-                  placeholder="Write your wisdom here!"
+                <Blogform
+                  onchangeHandler={this.onchangeHandler}
+                  value={value}
                 />
               </div>
 
               <div className="d-flex flex-row-reverese">
                 {posted ? (
-                  <button
+                  <Button
                     type="submit"
-                    className="btn btn-warning w-25 mb-2 ml-auto mr-3"
-                    disabled
+                    variant="outlined"
+                    color="secondary"
+                    className="ml-auto mr-3"
                   >
                     Posted
-                  </button>
+                  </Button>
                 ) : (
-                  <button
+                  <Button
                     type="submit"
-                    className="btn btn-dark  w-25 mb-2 ml-auto mr-3"
+                    variant="contained"
+                    color="secondary"
+                    className="ml-auto mr-3"
                   >
                     Post
-                  </button>
+                  </Button>
                 )}
               </div>
             </form>
-          </div>
+          </Paper>
           <Blogposts />
         </div>
       </React.Fragment>

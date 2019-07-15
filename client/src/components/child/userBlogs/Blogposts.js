@@ -1,7 +1,7 @@
 import React from "react";
-import config from "../../modules/config";
+import config from "../../../modules/config";
 import axios from "axios";
-import { withContext } from "../../context/WithContext";
+import { withContext } from "../../../context/WithContext";
 import SingleBlog from "./SingleBlog";
 
 class Blogposts extends React.Component {

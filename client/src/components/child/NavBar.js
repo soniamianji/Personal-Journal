@@ -76,11 +76,7 @@ class NavBar extends React.Component {
               )}
               {authenticated && (
                 <li className="nav-item text-light">
-                  <Link
-                    className=" text-light p-2 bd-highlight"
-                    to="/logout"
-                    // onClick={() => this.checkAuthentoation()}
-                  >
+                  <Link className=" text-light p-2 bd-highlight" to="/logout">
                     Log out
                   </Link>
                 </li>

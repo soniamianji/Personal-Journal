@@ -2,7 +2,7 @@ import React from "react";
 import config from "../../modules/config";
 import axios from "axios";
 import { withContext } from "../../context/WithContext";
-import Blogposts from "../child/Blogposts";
+import Blogposts from "../child/userBlogs/Blogposts";
 import Moment from "moment";
 import JournalPost from "./JournalPost";
 
