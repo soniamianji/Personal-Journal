@@ -1,0 +1,25 @@
+.circleavatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  text-align: center;
+  background: rgb(245, 0, 87);
+  background: linear-gradient(
+    332deg,
+    rgba(245, 0, 87, 1) 12%,
+    rgba(255, 193, 7, 1) 69%
+  );
+  .circleavatar__letterwrapper {
+    position: relative;
+    width: auto;
+    top: 23px;
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+
+    .circleavatar__firstletter {
+    }
+    .circleavatar__lastletter {
+    }
+  }
+}

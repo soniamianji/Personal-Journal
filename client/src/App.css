@@ -31,9 +31,7 @@
     transform: rotate(360deg);
   }
 }
-.active {
-  font-weight: bold;
-}
+
 .avatar {
   width: 100px;
   height: 100px;

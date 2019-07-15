@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import DeletePostButton from "./DeletePostButton";
+import AvatarGenerator from "./AvatarGenerator";
 
 class SingleBlog extends React.Component {
   constructor(props) {
@@ -78,10 +79,13 @@ class SingleBlog extends React.Component {
       <React.Fragment>
         <div className="stand container mx-auto border shadow-sm bg-light">
           <div className="d-flex m-3 mt-5">
-            <img
-              src={require("../../avatar/avatar.png")}
-              className="avatar img-thumbnail"
-            />
+            <AvatarGenerator user={user.name} />
+            {
+              //<img
+              //src={require("../../avatar/avatar.png")}
+              //className="avatar img-thumbnail"
+              ///>
+            }
 
             <div className="d-flex flex-column w-75">
               <div className="ml-3  mt-3">

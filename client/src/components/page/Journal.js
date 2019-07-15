@@ -8,27 +8,37 @@ import JournalPost from "./JournalPost";
 
 class Journal extends React.Component {
   state = {
-    userBlog: []
+    allBlogs: []
   };
   componentDidMount() {
     let UnAthorizedHeader = config.UnAthorizedHeader();
     axios.get("/auth/getallblogs", UnAthorizedHeader).then(response => {
       let { users } = response.data;
-      console.log(users);
       this.setState({
         users
       });
-      const blogs = users.map((user, i) => {
-        this.setState({
-          userBlog: [...this.state.userBlog, ...user.blog]
+      let allBlogs = [];
+      users.map((user, i) => {
+        let currentBlogs = [];
+        user.blog.map((blog, j) => {
+          let _blog = blog;
+          _blog.userName = user.name;
+          currentBlogs.push(_blog);
         });
+        allBlogs.push(...currentBlogs);
+      });
+
+      allBlogs = allBlogs.sort((a, b) => (b.blog_Date > a.blog_Date ? 1 : -1));
+      console.log(allBlogs);
+      this.setState({
+        allBlogs
       });
     });
   }
 
   render() {
-    const blogs = this.state.userBlog;
-    const users = this.state.users;
+    const allBlogs = this.state.allBlogs;
+    // const users = this.state.users;
     return (
       <React.Fragment>
         <div className=" standParent mx-auto">
@@ -37,12 +47,8 @@ class Journal extends React.Component {
             Welcome to Monkey's Journal
           </h1>
 
-          {users &&
-            users.map((user, i) => {
-              if (user.blog.length > 0) {
-                return <JournalPost key={i} user={user} />;
-              }
-            })}
+          {allBlogs &&
+            allBlogs.map((blog, i) => <JournalPost key={i} blog={blog} />)}
         </div>
       </React.Fragment>
     );
