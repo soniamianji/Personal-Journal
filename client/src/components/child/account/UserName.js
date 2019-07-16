@@ -1,7 +1,7 @@
 import React from "react";
 import config from "../../../modules/config";
 import axios from "axios";
-
+import TextField from "@material-ui/core/TextField";
 class UserName extends React.Component {
   constructor(props) {
     super(props);
@@ -66,9 +66,7 @@ class UserName extends React.Component {
           </button>
         </div>
         {err && (
-          <small className="d-flex justify-content-center w-75 text-danger">
-            {this.state.errors}
-          </small>
+          <small className="r w-75 text-danger">{this.state.errors}</small>
         )}
       </React.Fragment>
     );

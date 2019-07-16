@@ -83,21 +83,23 @@ class SignUpPage extends React.Component {
    */
   render() {
     return (
-      <div className=" stand border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
-        <SignUpForm
-          onSubmit={this.processForm}
-          onChange={this.changeUser}
-          errors={this.state.errors}
-          user={this.state.user}
-        />
-        <div className="text-center pb-3">
-          <Link
-            to={{
-              pathname: "/login"
-            }}
-          >
-            Already have an account?
-          </Link>
+      <div className=" standParent mx-auto">
+        <div className=" stand border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
+          <SignUpForm
+            onSubmit={this.processForm}
+            onChange={this.changeUser}
+            errors={this.state.errors}
+            user={this.state.user}
+          />
+          <div className="text-center pb-3">
+            <Link
+              to={{
+                pathname: "/login"
+              }}
+            >
+              Already have an account?
+            </Link>
+          </div>
         </div>
       </div>
     );

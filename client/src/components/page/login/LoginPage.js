@@ -105,25 +105,27 @@ class LoginPage extends React.Component {
    */
   render() {
     return (
-      <div className=" stand border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
-        <LoginForm
-          onSubmit={this.processForm}
-          onChange={this.changeUser}
-          errors={this.state.errors}
-          successMessage={this.state.successMessage}
-          user={this.state.user}
-          renderRedirect={this.renderRedirect}
-        />
+      <div className=" standParent mx-auto">
+        <div className=" stand border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
+          <LoginForm
+            onSubmit={this.processForm}
+            onChange={this.changeUser}
+            errors={this.state.errors}
+            successMessage={this.state.successMessage}
+            user={this.state.user}
+            renderRedirect={this.renderRedirect}
+          />
 
-        <div className="text-center mt-2">
-          <Link
-            to={{
-              pathname: "/forgotpass"
-            }}
-            onClick={this.forgotPass}
-          >
-            Forgot Your Password?
-          </Link>
+          <div className="text-center mt-2">
+            <Link
+              to={{
+                pathname: "/forgotpass"
+              }}
+              onClick={this.forgotPass}
+            >
+              Forgot Your Password?
+            </Link>
+          </div>
         </div>
       </div>
     );

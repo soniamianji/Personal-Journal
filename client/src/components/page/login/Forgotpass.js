@@ -60,49 +60,51 @@ class Forgotpass extends React.Component {
   render() {
     const { email, messageFromServer, showNullError, showError } = this.state;
     return (
-      <div className="stand container mx-auto text-center border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
-        <h2 className="mb-4">Please Enter Your Email Address.</h2>
-        <form
-          className="form-signin mx-auto d-felx w-50"
-          onSubmit={this.sendEmail}
-        >
-          <input
-            type="text"
-            id="email"
-            className="form-control mb-2 mx-auto"
-            label="email"
-            value={email}
-            onChange={this.handleChange("email")}
-            placeholder="Email Address"
-            required=""
-          />
-          <button
-            type="submit"
-            className="btn btn-lg btn-dark btn-block mx-auto"
+      <div className=" standParent mx-auto">
+        <div className="stand container mx-auto text-center border mx-auto shadow-sm p-3 mb-5 bg-white rounded">
+          <h2 className="mb-4">Please Enter Your Email Address.</h2>
+          <form
+            className="form-signin mx-auto d-felx w-50"
+            onSubmit={this.sendEmail}
           >
-            Send a reset link
-          </button>
-        </form>
-        {showNullError && (
-          <div>
-            <p>The email address cannot be null.</p>
-          </div>
-        )}
-        {showError && (
-          <div>
-            <p>
-              that email addrees isnt recognised. Please try again or regioster
-              for a new account.
-            </p>
-          </div>
-        )}
-        {messageFromServer === "recovery email sent" && (
-          <div>
-            <h5 className="mt-4 text-info">
-              Password Reset email Successfully sent!
-            </h5>
-          </div>
-        )}
+            <input
+              type="text"
+              id="email"
+              className="form-control mb-2 mx-auto"
+              label="email"
+              value={email}
+              onChange={this.handleChange("email")}
+              placeholder="Email Address"
+              required=""
+            />
+            <button
+              type="submit"
+              className="btn btn-lg btn-dark btn-block mx-auto"
+            >
+              Send a reset link
+            </button>
+          </form>
+          {showNullError && (
+            <div>
+              <p>The email address cannot be null.</p>
+            </div>
+          )}
+          {showError && (
+            <div>
+              <p>
+                that email addrees isnt recognised. Please try again or
+                regioster for a new account.
+              </p>
+            </div>
+          )}
+          {messageFromServer === "recovery email sent" && (
+            <div>
+              <h5 className="mt-4 text-info">
+                Password Reset email Successfully sent!
+              </h5>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

@@ -80,11 +80,7 @@ class EmailChangeForm extends React.Component {
             Update email
           </button>
         </div>
-        {err && (
-          <small className="d-flex justify-content-center w-75 text-danger">
-            {this.state.errors}
-          </small>
-        )}
+        {err && <small className="w-75 text-danger">{this.state.errors}</small>}
       </React.Fragment>
     );
   }
