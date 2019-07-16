@@ -218,7 +218,7 @@ router.post("/forgot", (req, res) => {
           service: "Gmail",
           auth: {
             user: "soniamianji1@gmail.com",
-            pass: "Tryharder1313??"
+            pass: process.env.API_KEY
           }
         });
 
