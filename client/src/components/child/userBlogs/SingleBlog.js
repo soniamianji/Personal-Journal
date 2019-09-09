@@ -58,7 +58,7 @@ class SingleBlog extends React.Component {
     };
     return (
       <React.Fragment>
-        <Paper className="stand container mx-auto p-3">
+        <Paper className="stand container mx-auto p-3 mt-3">
           <div className="d-flex m-2 ml-4">
             <AvatarGenerator user={user.name} />
             <div className="d-flex flex-column w-75">

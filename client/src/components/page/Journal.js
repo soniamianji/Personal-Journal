@@ -46,9 +46,10 @@ class Journal extends React.Component {
             {" "}
             Welcome to Monkey's Journal
           </h1>
-
-          {allBlogs &&
-            allBlogs.map((blog, i) => <JournalPost key={i} blog={blog} />)}
+          <div className="mt-3">
+            {allBlogs &&
+              allBlogs.map((blog, i) => <JournalPost key={i} blog={blog} />)}
+          </div>
         </div>
       </React.Fragment>
     );

@@ -21,7 +21,9 @@ class Blogposts extends React.Component {
     const posts = this.props.Context.user.blog;
     return (
       <React.Fragment>
-        {posts && posts.map((item, i) => <SingleBlog key={i} item={item} />)}
+        <div className="mt-3">
+          {posts && posts.map((item, i) => <SingleBlog key={i} item={item} />)}
+        </div>
       </React.Fragment>
     );
   }

@@ -43,8 +43,8 @@
 }
 .stand {
   width: 400px !important;
-  margin-top: 44px;
-  margin-bottom: 44px;
+  margin-top: 22px;
+  margin-bottom: 22px;
 }
 .stand:first-child,
 .stand:last-child {
@@ -64,8 +64,8 @@
   }
   .stand {
     width: 600px !important;
-    margin-top: 44px;
-    margin-bottom: 44px;
+    margin-top: 22px;
+    margin-bottom: 22px;
   }
   .stand:first-child,
   .stand:last-child {
